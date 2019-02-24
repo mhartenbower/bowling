@@ -39,6 +39,26 @@ function addPlayer() {
   });
 }
 
+// Makes a new request to the backend service to create a new roll
+function roll(playerId) {
+  $.post('http://localhost:3000/game/' + gameId + '/player/' + playerId + '/roll',
+      {rollValue: $('.rollInput' + playerId).val()}, function( data ) {
+        score = data.game.scoreboard[playerId].score;
+        frames = data.game.scoreboard[playerId].frames;
+        $('#score' + playerId).html('Score: ' + score);
+        
+        // Update the scoreboard view
+        for (let i = 0; i < frames.length; i++) {
+          $('#' + (i+1) + playerId).html(frames[i].toString());
+        };
+      })
+      .fail(function(data) {
+        console.log(data.responseJSON.msg);
+        msg = data.responseJSON.msg;
+        $('.warning').html('<div class="warning">' + msg + '</div>');
+      });
+}
+
 // Adds a new player element to the view
 function addPlayerDiv(playerId) {
   $('.players').append(
@@ -67,21 +87,4 @@ function addPlayerDiv(playerId) {
   </div>
   </div>`
   );
-}
-
-// Makes a new request to the backend service to create a new roll
-function roll(playerId) {
-  $.post('http://localhost:3000/game/' + gameId + '/player/' + playerId + '/roll',
-      {rollValue: $('.rollInput' + playerId).val()}, function( data ) {
-        msg = data.msg;
-        $('.warning').html('<div class="warning">' + msg + '</div>');
-        score = data.game.scoreboard[playerId].score;
-        frames = data.game.scoreboard[playerId].frames;
-        $('#score' + playerId).html('Score: ' + score);
-        
-        // Update the scoreboard view
-        for (let i = 0; i < frames.length; i++) {
-          $('#' + (i+1) + playerId).html(frames[i].toString());
-        };
-      });
 }

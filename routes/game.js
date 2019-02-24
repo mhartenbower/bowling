@@ -43,12 +43,12 @@ router.get('/:gameId/player/:playerId', function(req, res, next) {
 router.post('/:gameId/player/:playerId/roll', rollValidator, function(req, res, next) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).send({'msg': errors.array()});
+    return res.status(400).send({'msg': errors.array()[0].msg});
   }
   game = Game.Game.retrieve(req.params.gameId);
   err = game.addRoll(req.params.playerId, parseInt(req.body.rollValue));
   if (err) {
-    return res.status(400).send({'msg': err});
+    return res.status(400).send({'msg': err.toString()});
   }
   for (playerId in game.players) {
     if (game.players.hasOwnProperty(playerId)) {

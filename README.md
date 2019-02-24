@@ -11,7 +11,7 @@ This project was bootstrapped with express-generator.
    1. Run `./createGame` to start a new game
    2. Create one more players using `./createPlayer <gameId> <playerName>`
    3. Start rolling! `./newRoll <gameId> <playerId>`
-2. There is also an incomplete user interface for demo purposes. To use it, open `/public/index.html` in a browser and press `create game` to get started.
+2. There is also an incomplete and messy user interface for demo purposes. To use it, open `/public/index.html` in a browser and press `create game` to get started.
 
 ## Testing
 To test, just run `npm test`. Make sure that a local instance of the service is running if you want the functional test to have a chance at passing.
