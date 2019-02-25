@@ -29,6 +29,7 @@ describe('#Functional Tests', function() {
     request.post({uri: 'http://localhost:3000/game/' + gameId + '/player/' + playerId + '/roll', resolveWithFullResponse: true, json: requestData})
         .then(function(res) {
           assert.equal(res.statusCode, 201);
+          assert.equal(res.body.game.scoreboard[playerId].score, 0);
         })
         .then(function() {
           request.get({uri: 'http://localhost:3000/game/' + gameId + '/player/' + playerId + '/roll/0?frameId=0', resolveWithFullResponse: true})
@@ -47,6 +48,83 @@ describe('#Functional Tests', function() {
         .then(function(res) {
           assert.equal(res.statusCode, 201);
           assert.equal(res.body.game.scoreboard[playerId].score, 6);
+          done();
+        });
+  });
+  it('Roll a strike', function(done) {
+    requestData = {
+      rollValue: 10,
+    };
+    request.post({uri: 'http://localhost:3000/game/' + gameId + '/player/' + playerId + '/roll', resolveWithFullResponse: true, json: requestData})
+        .then(function(res) {
+          assert.equal(res.statusCode, 201);
+          assert.equal(res.body.game.scoreboard[playerId].score, 6);
+          done();
+        });
+  });
+  it('Roll a strike', function(done) {
+    requestData = {
+      rollValue: 10,
+    };
+    request.post({uri: 'http://localhost:3000/game/' + gameId + '/player/' + playerId + '/roll', resolveWithFullResponse: true, json: requestData})
+        .then(function(res) {
+          assert.equal(res.statusCode, 201);
+          assert.equal(res.body.game.scoreboard[playerId].score, 6);
+          done();
+        });
+  });
+  it('Roll a strike', function(done) {
+    requestData = {
+      rollValue: 10,
+    };
+    request.post({uri: 'http://localhost:3000/game/' + gameId + '/player/' + playerId + '/roll', resolveWithFullResponse: true, json: requestData})
+        .then(function(res) {
+          assert.equal(res.statusCode, 201);
+          assert.equal(res.body.game.scoreboard[playerId].score, 36);
+          done();
+        });
+  });
+  it('Retrieve the game', function(done) {
+    request.get({uri: 'http://localhost:3000/game/' + gameId, resolveWithFullResponse: true})
+        .then(function(res) {
+          body = JSON.parse(res.body);
+          assert.equal(res.statusCode, 200);
+          assert.equal(body.scoreboard[playerId].score, 36);
+          assert.equal(body.id, gameId);
+          assert.deepEqual(body.scoreboard[playerId].frames, [[3, 3], [10], [10], [10]]);
+          done();
+        });
+  });
+  it('Roll first part of a spare', function(done) {
+    requestData = {
+      rollValue: 5,
+    };
+    request.post({uri: 'http://localhost:3000/game/' + gameId + '/player/' + playerId + '/roll', resolveWithFullResponse: true, json: requestData})
+        .then(function(res) {
+          assert.equal(res.statusCode, 201);
+          assert.equal(res.body.game.scoreboard[playerId].score, 61);
+          done();
+        });
+  });
+  it('Roll second part of a spare', function(done) {
+    requestData = {
+      rollValue: 5,
+    };
+    request.post({uri: 'http://localhost:3000/game/' + gameId + '/player/' + playerId + '/roll', resolveWithFullResponse: true, json: requestData})
+        .then(function(res) {
+          assert.equal(res.statusCode, 201);
+          assert.equal(res.body.game.scoreboard[playerId].score, 81);
+          done();
+        });
+  });
+  it('Roll a normal roll', function(done) {
+    requestData = {
+      rollValue: 4,
+    };
+    request.post({uri: 'http://localhost:3000/game/' + gameId + '/player/' + playerId + '/roll', resolveWithFullResponse: true, json: requestData})
+        .then(function(res) {
+          assert.equal(res.statusCode, 201);
+          assert.equal(res.body.game.scoreboard[playerId].score, 95);
           done();
         });
   });

@@ -44,7 +44,7 @@ Game.prototype.updateScore = function(playerId) {
       // If the next frame has two values, use those to assign the strike a value
       if (frames[i+1].length >= 2) {
         sum += currFrame[0] + frames[i+1][0] + frames[i+1][1];
-        ;
+        continue;
       }
 
       if (!(frames[i+2])) {
@@ -54,7 +54,6 @@ Game.prototype.updateScore = function(playerId) {
       // If the frame that is two frames ahead has a value, we can calculate the score of the strike 
       if (frames[i+2].length >= 1) {
         sum += currFrame[0] + frames[i+1][0] + frames[i+2][0];
-        ;
       }
 
       continue;
