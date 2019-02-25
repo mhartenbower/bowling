@@ -4,7 +4,7 @@ const Player = require('../models/player');
 const Scoreboard = require('../models/scoreboard');
 
 describe('Models - Game', function() {
-  describe('#getScore()', function() {
+  describe('#updateScore()', function() {
     it('It should return 0', function() {
       game = new Game.Game(1);
       player = new Player(1, 'Bill');
@@ -12,7 +12,7 @@ describe('Models - Game', function() {
       scoreboard = new Scoreboard();
       game.scoreboard[player.id] = scoreboard;
       game.scoreboard[1].frames = [[1]];
-      game.getScore(1);
+      game.updateScore(1);
       assert.equal(game.scoreboard[1].score, 0);
     });
     it('It should return 2', function() {
@@ -22,7 +22,7 @@ describe('Models - Game', function() {
       scoreboard = new Scoreboard();
       game.scoreboard[player.id] = scoreboard;
       game.scoreboard[1].frames = [[1, 1]];
-      game.getScore(1);
+      game.updateScore(1);
       assert.equal(game.scoreboard[1].score, 2);
     });
     it('It should return 2', function() {
@@ -32,7 +32,7 @@ describe('Models - Game', function() {
       scoreboard = new Scoreboard();
       game.scoreboard[player.id] = scoreboard;
       game.scoreboard[1].frames = [[1, 1], [2]];
-      game.getScore(1);
+      game.updateScore(1);
       assert.equal(game.scoreboard[1].score, 2);
     });
     it('It should return 0', function() {
@@ -42,7 +42,7 @@ describe('Models - Game', function() {
       scoreboard = new Scoreboard();
       game.scoreboard[player.id] = scoreboard;
       game.scoreboard[1].frames= [[0, 0]];
-      game.getScore(1);
+      game.updateScore(1);
       assert.equal(game.scoreboard[1].score, 0);
     });
     it('It should return 30', function() {
@@ -52,7 +52,7 @@ describe('Models - Game', function() {
       scoreboard = new Scoreboard();
       game.scoreboard[player.id] = scoreboard;
       game.scoreboard[1].frames = [[10], [10], [10]];
-      game.getScore(1);
+      game.updateScore(1);
       assert.equal(game.scoreboard[1].score, 30);
     });
     it('It should return 22', function() {
@@ -62,7 +62,7 @@ describe('Models - Game', function() {
       scoreboard = new Scoreboard();
       game.scoreboard[player.id] = scoreboard;
       game.scoreboard[1].frames = [[1, 9], [6, 0], [10]];
-      game.getScore(1);
+      game.updateScore(1);
       assert.equal(game.scoreboard[1].score, 22);
     });
     it('It should return 27', function() {
@@ -72,7 +72,7 @@ describe('Models - Game', function() {
       scoreboard = new Scoreboard();
       game.scoreboard[player.id] = scoreboard;
       game.scoreboard[1].frames = [[3, 4], [5, 5], [10]];
-      game.getScore(1);
+      game.updateScore(1);
       assert.equal(game.scoreboard[1].score, 27);
     });
     it('It should return 27', function() {
@@ -82,7 +82,7 @@ describe('Models - Game', function() {
       scoreboard = new Scoreboard();
       game.scoreboard[player.id] = scoreboard;
       game.scoreboard[1].frames = [[3, 4], [10], [5, 5]];
-      game.getScore(1);
+      game.updateScore(1);
       assert.equal(game.scoreboard[1].score, 27);
     });
     it('It should return 35', function() {
@@ -92,7 +92,7 @@ describe('Models - Game', function() {
       scoreboard = new Scoreboard();
       game.scoreboard[player.id] = scoreboard;
       game.scoreboard[1].frames = [[3, 4], [10], [5, 4]];
-      game.getScore(1);
+      game.updateScore(1);
       assert.equal(game.scoreboard[1].score, 35);
     });
     it('It should return 14', function() {
@@ -102,7 +102,7 @@ describe('Models - Game', function() {
       scoreboard = new Scoreboard();
       game.scoreboard[player.id] = scoreboard;
       game.scoreboard[1].frames = [[4, 6], [4, 6]];
-      game.getScore(1);
+      game.updateScore(1);
       assert.equal(game.scoreboard[1].score, 14);
     });
     it('It should return 300', function() {
@@ -112,7 +112,7 @@ describe('Models - Game', function() {
       scoreboard = new Scoreboard();
       game.scoreboard[player.id] = scoreboard;
       game.scoreboard[1].frames = [[10], [10], [10], [10], [10], [10], [10], [10], [10], [10, 10, 10]];
-      game.getScore(1);
+      game.updateScore(1);
       assert.equal(game.scoreboard[1].score, 300);
     });
     it('It should return 0', function() {
@@ -122,7 +122,7 @@ describe('Models - Game', function() {
       scoreboard = new Scoreboard();
       game.scoreboard[player.id] = scoreboard;
       game.scoreboard[1].frames = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]];
-      game.getScore(1);
+      game.updateScore(1);
       assert.equal(game.scoreboard[1].score, 0);
     });
     it('It should return 270', function() {
@@ -132,7 +132,7 @@ describe('Models - Game', function() {
       scoreboard = new Scoreboard();
       game.scoreboard[player.id] = scoreboard;
       game.scoreboard[1].frames = [[10], [10], [10], [10], [10], [10], [10], [10], [10], [10, 10]];
-      game.getScore(1);
+      game.updateScore(1);
       assert.equal(game.scoreboard[1].score, 270);
     });
     it('It should return 240', function() {
@@ -142,7 +142,7 @@ describe('Models - Game', function() {
       scoreboard = new Scoreboard();
       game.scoreboard[player.id] = scoreboard;
       game.scoreboard[1].frames = [[10], [10], [10], [10], [10], [10], [10], [10], [10], [10]];
-      game.getScore(1);
+      game.updateScore(1);
       assert.equal(game.scoreboard[1].score, 240);
     });
 
@@ -153,7 +153,7 @@ describe('Models - Game', function() {
       scoreboard = new Scoreboard();
       game.scoreboard[player.id] = scoreboard;
       game.scoreboard[1].frames = [[10], [10], [10], [10], [10], [10], [10], [10], [10], [10]];
-      game.getScore(1);
+      game.updateScore(1);
       assert.equal(game.scoreboard[1].score, 240);
     });
 
@@ -164,7 +164,7 @@ describe('Models - Game', function() {
       scoreboard = new Scoreboard();
       game.scoreboard[player.id] = scoreboard;
       game.scoreboard[1].frames = [[10], [10], [10], [10], [10], [10], [10], [10], [10]];
-      game.getScore(1);
+      game.updateScore(1);
       assert.equal(game.scoreboard[1].score, 210);
     });
 
@@ -175,19 +175,30 @@ describe('Models - Game', function() {
       scoreboard = new Scoreboard();
       game.scoreboard[player.id] = scoreboard;
       game.scoreboard[1].frames = [[10], [10], [10], [10], [10], [10], [10], [10], [10], [3, 7, 10]];
-      game.getScore(1);
+      game.updateScore(1);
       assert.equal(game.scoreboard[1].score, 273);
     });
 
-    it('It should return 273', function() {
+    it('It should return 253', function() {
       game = new Game.Game(1);
       player = new Player(1, 'Bill');
       game.players[1] = player;
       scoreboard = new Scoreboard();
       game.scoreboard[player.id] = scoreboard;
       game.scoreboard[1].frames = [[10], [10], [10], [10], [10], [10], [10], [10], [10], [3, 7]];
-      game.getScore(1);
+      game.updateScore(1);
       assert.equal(game.scoreboard[1].score, 253);
+    });
+
+    it('It should return 264', function() {
+      game = new Game.Game(1);
+      player = new Player(1, 'Bill');
+      game.players[1] = player;
+      scoreboard = new Scoreboard();
+      game.scoreboard[player.id] = scoreboard;
+      game.scoreboard[1].frames = [[10], [10], [10], [10], [10], [10], [10], [10], [10], [3, 7, 1]];
+      game.updateScore(1);
+      assert.equal(game.scoreboard[1].score, 264);
     });
   });
 

@@ -15,7 +15,7 @@ Roll.prototype.save = function(gameId, playerId, roll) {
   if (err) {
     return err;
   }
-  game.getScore(playerId);
+  game.updateScore(playerId);
 
   gameStore.setGame(game.id, game);
 };
