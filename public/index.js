@@ -12,11 +12,11 @@ function addPlayerListener() {
   $('.createPlayer').click(function() {
     addPlayer();
   });
-}  
+}
 
 // Add listener to roll button
 function addRollListener(playerIdentifier) {
-  $( '#button' + playerIdentifier ).click(function() {
+  $('#button' + playerIdentifier ).click(function() {
     roll(playerIdentifier);
   });
 }
@@ -51,22 +51,24 @@ function roll(playerId) {
         for (let i = 0; i < frames.length; i++) {
           $('#' + (i+1) + playerId).html(frames[i].toString());
         };
+
+        $('.warning' + playerId).html('');
       })
       .fail(function(data) {
-        console.log(data.responseJSON.msg);
         msg = data.responseJSON.msg;
-        $('.warning').html('<div class="warning">' + msg + '</div>');
+        $('.warning' + playerId).html(msg);
       });
 }
 
 // Adds a new player element to the view
 function addPlayerDiv(playerId) {
   $('.players').append(
-      `<div class="row" id="` + playerId+ `">
+      `<div class="row players2" id="` + playerId+ `">
       <div class="col-1">
           <button type="button" class="btn btn-sm btn-primary" id="button` + playerId + `">Roll</button>
       </div>
-      <div class="col-1"><input type="text" class="rollInput` + playerId + ` input-sm" id="usr"></div>
+      <div class="col-1"><input type="text" class="rollInput` + playerId + `" value="" maxlength="2" /></div>
+      <div class="col-10 warning` + playerId + `"></div>
       <table class="table">
           <thead>
               <tr>

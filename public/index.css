@@ -11,4 +11,13 @@ table{
     table-layout: fixed;
     width: 20px;
     height: 40px;
+    margin-top:20px;
+}
+
+.players2{
+    margin-bottom:20px;
+}
+
+input[type="text"] {
+    width: 30px;
 }
